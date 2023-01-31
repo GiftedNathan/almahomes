@@ -2,10 +2,36 @@ import React from 'react'
 import { Flex, Box, Heading, Text, Center, useColorModeValue, Stack, Image, Icon } from '@chakra-ui/react'
 import { FaLandmark } from 'react-icons/fa';
 import HomeImage1 from '../assets/images/home1.jpg'
+
+import imageCompression from 'browser-image-compression';
+
 const IMAGE =
   'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80';
 
+async function compressImage(image) {
+
+  const imageFile = image;
+
+  const options = {
+    maxSizeMB: 1,
+    maxWidthOrHeight: 1920,
+    useWebWorker: true
+  }
+  try {
+    const compressedFile = await imageCompression(imageFile, options);
+    console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
+    return compressedFile;
+
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+// compressImage(HomeImage1);
+
+
 const PropertyCard = ({cardImage=HomeImage1, }) => {
+
   return (
     <Center py={12}>
       <Box

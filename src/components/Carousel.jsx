@@ -3,8 +3,8 @@ import Slider from "react-slick";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
 
-import { Flex, Box, Stack, HStack, SimpleGrid, Image, Text, Heading } from "@chakra-ui/react";
-
+import { Flex, Box, Stack, HStack, SimpleGrid, Image, Text, Heading, Icon } from "@chakra-ui/react";
+import { FaLandmark, FaDollarSign } from 'react-icons/fa';
 import Image1 from '../assets/images/home1.jpg'
 import Image2 from '../assets/images/home2.jpg'
 import Image3 from '../assets/images/home3.jpg'
@@ -93,12 +93,13 @@ const Carousel = () => {
     ml: `-${currentSlide * 100}%`,
   };
   return (
-    <SimpleGrid
-      minChildWidth='590px' spacing='12px'
+    <Flex
+      
+      flexDirection={['column', 'column', 'row', 'row']}
       w="full"
       // h="90vh"
       border={1}
-      bg="#a7a4a4"
+      bg="#000000"
       _dark={{
         bg: "#3e3e3e",
       }}
@@ -106,21 +107,34 @@ const Carousel = () => {
       py={0}
       alignItems="center"
       justifyContent="center"
-      wrap={'wrap'}
+      // wrap={'wrap'}
     >
-      <Stack  align={"flex-start"} spacing={8} p={12}>
-          <Heading as={'h1'} color={"white"} fontWeight={700} lineHeight={1.2} fontSize={64}
+      <Stack align={"flex-start"} minW={['auto', 'auto', 'auto', '600px']} spacing={8} p={12}>
+          <Heading as={'h3'} color={"gray.300"} fontWeight={700} lineHeight={1.2} fontSize={[24, 32, 40, 48]}
           >
-           Find your dream home
+           Dellas Premire Suit!
           </Heading>
           
-          <Text as={'h2'} color={"white"} fontWeight={400} lineHeight={1.2} 
+          <Text as={'h2'} color={"gray.400"} fontWeight={400} lineHeight={1.2} 
           >
-           We have over a million properties for you!
+           Latest apartment in Dellas with pool area, play ground, 
+           garden, baseball court and a chapel.
           </Text>
+
+          <Flex flexDir={'column'} alignItems={'start'} gap={2}>
+            <Flex alignItems={'center'} color={'gray.500'} fontSize={'xl'}>
+              <Icon as={FaLandmark} mr={2} color={'green.500'}/>
+              London, England
+            </Flex>
+            <Flex alignItems={'center'} color={'gray.500'} fontSize={'xl'}>
+              <Icon as={FaDollarSign} mr={2} color={'green.500'}/>
+              $199m
+            </Flex>
+          </Flex>
+
       </Stack>
 
-      <Flex w="full" height={'100%'} pos="relative" overflow="hidden">
+      <Flex  height={'100%'} pos="relative" overflow="hidden">
         <Flex h="full" w="full" {...carouselStyle}>
           {slides.map((slide, sid) => (
             <Box key={`slide-${sid}`} boxSize="full" shadow="md" flex="none">
@@ -182,7 +196,7 @@ const Carousel = () => {
         </HStack>
       </Flex>
 
-    </SimpleGrid>
+    </Flex>
   );
 
   return (
